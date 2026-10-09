@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейс: Система бизнес-процессов — Екатерина Дорохина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:     #1A1815;
+  --card:   #F6F2EA;
+  --card2:  #EFE9DC;
+  --ink:    #17150F;
+  --ink2:   #4A443A;
+  --blue:   #4F7DAB;
+  --blue-d: #2F5C8A;
+  --blue-bg:#D9E6F2;
+  --accent: #E8C15A;
+  --muted:  #8A8272;
+  --rule:   #DAD2C2;
+  --cream-t:#A69E8C;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ══ TOP BAR ══ */
+.topbar{
+  max-width:1100px;margin:0 auto;padding:20px 26px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;color:var(--cream-t);
+}
+.topbar a{color:#7FA8D0;text-decoration:none}
+.topbar a:hover{text-decoration:underline}
+
+/* ══ SHELL ══ */
+.shell{max-width:1100px;margin:0 auto;padding:0 26px 100px}
+
+/* ══ HERO ══ */
+.hero{padding:64px 0 40px;border-bottom:1px solid #2C2820}
+.hero .idx{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;
+}
+.hero h1{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(32px,5vw,54px);font-weight:900;color:var(--card);
+  letter-spacing:-.03em;line-height:1.04;max-width:16ch;
+}
+.hero .sub{
+  font-size:16px;color:var(--cream-t);margin-top:18px;max-width:52ch;line-height:1.6;
+}
+.hero .stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  margin-top:44px;background:#2C2820;border-radius:6px;overflow:hidden;
+}
+.hero .stat{background:#201D18;padding:20px 18px}
+.hero .stat .n{font-size:26px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
+.hero .stat .l{font-size:11px;color:var(--cream-t);margin-top:6px;line-height:1.4}
+
+/* ══ SECTION SHELL ══ */
+.section{padding:72px 0;border-bottom:1px solid #2C2820}
+.section:last-of-type{border-bottom:none}
+.section .idx{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;
+}
+.section h2{
+  font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--card);
+  letter-spacing:-.02em;max-width:22ch;margin-bottom:20px;
+}
+.section .lede{font-size:15.5px;color:#C9C2B4;max-width:64ch;line-height:1.75}
+.section .lede + .lede{margin-top:14px}
+
+/* ══ 01 POINT A — text + scattered-tables illustration ══ */
+.pointA{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.pointA .art{display:flex;justify-content:center}
+@media (max-width:820px){.pointA{grid-template-columns:1fr}.pointA .art{order:-1}}
+
+/* ══ 02 ARCHITECTURE — full width image card ══ */
+.arch-img{
+  margin-top:36px;background:var(--card);border-radius:8px;padding:18px;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.arch-img img{width:100%;display:block;border-radius:3px}
+.arch-legend{
+  margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.arch-legend .item{border-left:2px solid var(--blue);padding-left:14px}
+.arch-legend .item h4{font-size:12.5px;font-weight:700;color:var(--card);margin-bottom:5px}
+.arch-legend .item p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:820px){.arch-legend{grid-template-columns:1fr}}
+
+/* ══ 03 TEAM & TIMELINE ══ */
+.timeline{margin-top:44px;position:relative;padding-left:2px}
+.timeline .track{
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+}
+.timeline .track::before{
+  content:'';position:absolute;top:7px;left:0;right:0;height:1px;background:var(--rule);opacity:.25;
+}
+.tl-step{position:relative;padding-top:26px;padding-right:24px}
+.tl-step::before{
+  content:'';position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;
+  background:var(--accent);border:3px solid var(--bg);
+}
+.tl-step .when{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue);margin-bottom:6px}
+.tl-step h4{font-size:14px;font-weight:700;color:var(--card);margin-bottom:6px}
+.tl-step p{font-size:13px;color:var(--cream-t);line-height:1.55}
+@media (max-width:680px){.timeline .track{grid-template-columns:1fr;gap:28px}.timeline .track::before{display:none}}
+
+.team{margin-top:52px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.role{background:#201D18;border-radius:6px;padding:18px 14px;text-align:center}
+.role .ic{width:34px;height:34px;margin:0 auto 12px;color:var(--blue)}
+.role h5{font-size:12px;font-weight:700;color:var(--card);line-height:1.3}
+.role span{display:block;font-size:10.5px;color:var(--cream-t);margin-top:5px}
+@media (max-width:820px){.team{grid-template-columns:repeat(2,1fr)}}
+
+/* ══ 04 SCALE ══ */
+.scale-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:44px;margin-top:36px}
+.scale-num{background:#201D18;border-radius:8px;padding:36px 30px}
+.scale-num .n{font-size:56px;font-weight:900;color:var(--accent);letter-spacing:-.03em;line-height:1}
+.scale-num .l{font-size:13px;color:var(--cream-t);margin-top:12px;line-height:1.5;max-width:22ch}
+.scale-text p{font-size:14.5px;color:#C9C2B4;line-height:1.75}
+.scale-text p+p{margin-top:14px}
+@media (max-width:780px){.scale-grid{grid-template-columns:1fr}}
+
+/* ══ 05 RESULT ══ */
+.result-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start;margin-top:36px}
+.browser-mock{
+  background:var(--card);border-radius:8px;overflow:hidden;
+  box-shadow:0 16px 44px rgba(0,0,0,.4);
+}
+.browser-mock .bar{
+  background:var(--card2);padding:9px 14px;display:flex;gap:6px;align-items:center;
+  border-bottom:1px solid var(--rule);
+}
+.browser-mock .bar span{width:9px;height:9px;border-radius:50%;background:#D8CFBC}
+.browser-mock img{width:100%;display:block}
+.result-stats{display:flex;flex-direction:column;gap:18px}
+.rstat{background:#201D18;border-radius:8px;padding:22px}
+.rstat .before-after{
+  display:flex;align-items:baseline;gap:10px;font-weight:800;letter-spacing:-.02em;
+}
+.rstat .before-after .old{font-size:19px;color:var(--muted);text-decoration:line-through;text-decoration-color:#6B6558}
+.rstat .before-after .arrow{color:var(--blue);font-size:16px}
+.rstat .before-after .new{font-size:26px;color:var(--accent)}
+.rstat p{font-size:12.5px;color:var(--cream-t);margin-top:10px;line-height:1.5}
+@media (max-width:820px){.result-grid{grid-template-columns:1fr}}
+
+.callout{
+  margin-top:40px;background:var(--blue-bg);border-radius:8px;padding:26px 28px;
+  color:var(--ink2);
+}
+.callout p{font-size:14px;line-height:1.7}
+.callout p b{color:var(--ink);font-weight:700}
+
+/* ══ 04 ORG & PROCESS ══ */
+.org-split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+.org-level{background:#201D18;border-radius:8px;padding:24px}
+.org-level h4{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.org-level p{font-size:13.5px;color:var(--cream-t);line-height:1.6}
+@media (max-width:780px){.org-split{grid-template-columns:1fr}}
+
+.flow{margin-top:36px;display:flex;flex-direction:column}
+.flow-step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #2C2820}
+.flow-step:last-child{border-bottom:none}
+.flow-step .num{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--blue);color:var(--card);font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.flow-step .txt h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:3px}
+.flow-step .txt p{font-size:12.5px;color:var(--cream-t);line-height:1.5}
+
+/* ══ 05 METRICS ══ */
+.metric-group{margin-top:32px}
+.metric-group h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:#201D18;border:1px solid #2C2820;border-radius:20px;padding:8px 16px;font-size:12.5px;color:var(--card);font-family:'IBM Plex Mono',monospace}
+
+/* ══ 06 AUDIENCES ══ */
+.aud-grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.aud-card{background:#201D18;border-radius:8px;padding:22px 20px;border-top:3px solid var(--blue)}
+.aud-card h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:8px}
+.aud-card p{font-size:12.5px;color:var(--cream-t);line-height:1.6}
+@media (max-width:820px){.aud-grid{grid-template-columns:1fr}}
+
+/* ══ 09 FINAL SUMMARY ══ */
+.final-split{margin-top:36px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center}
+.final-col{background:#201D18;border-radius:8px;padding:24px}
+.final-col.before{opacity:.75}
+.final-col h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.final-col.before h4{color:var(--muted)}
+.final-col.after h4{color:var(--accent)}
+.final-col ul{padding-left:18px;color:var(--cream-t);font-size:13px;line-height:1.8}
+.final-arrow{color:var(--blue);font-size:22px;text-align:center}
+@media (max-width:780px){.final-split{grid-template-columns:1fr}.final-arrow{transform:rotate(90deg)}}
+
+/* ══ FOOTER ══ */
+.footer{padding:56px 0 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer a{
+  color:var(--card);text-decoration:none;font-weight:600;font-size:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.footer a:hover{color:var(--accent)}
+.footer .tg{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--cream-t)}
+.footer .tg a{color:#7FA8D0;font-weight:400;font-size:11px}
+
+@media (max-width:600px){
+  .hero .stats{grid-template-columns:repeat(2,1fr)}
+  .shell{padding:0 18px 70px}
+  .hero{padding:44px 0 32px}
+}
+
+/* ── process case extras ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+.pain{background:#201D18;border-radius:8px;padding:24px;border-left:3px solid #6B6558}
+.pain h4,.gain h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.pain h4{color:var(--muted)}
+.pain ul,.gain ul{list-style:none}
+.pain li,.gain li{font-size:13.5px;line-height:1.55;padding:7px 0 7px 18px;position:relative;border-bottom:1px solid #2C2820}
+.pain li:last-child,.gain li:last-child{border:0}
+.pain li{color:#9A9282}
+.pain li::before{content:'×';position:absolute;left:0;color:#6B6558}
+.gain{background:#201D18;border-radius:8px;padding:24px;border-left:3px solid var(--accent)}
+.gain h4{color:var(--accent)}
+.gain li{color:#C9C2B4}
+.gain li::before{content:'✓';position:absolute;left:0;color:var(--accent)}
+@media (max-width:780px){.two{grid-template-columns:1fr}}
+
+.chaos{display:flex;justify-content:center}
+.pcard{background:#201D18;border-radius:8px;padding:26px 24px;margin-top:20px}
+.pcard .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.pcard h3{font-size:20px;font-weight:800;color:var(--card);letter-spacing:-.02em;margin:6px 0 10px}
+.pcard .what{font-size:14px;color:#C9C2B4;line-height:1.7;max-width:70ch}
+.pcard.main{border-top:3px solid var(--accent)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.pgrid .it{border-left:2px solid var(--blue);padding-left:14px}
+.pgrid .it h5{font-size:12.5px;font-weight:700;color:var(--card);margin-bottom:5px}
+.pgrid .it p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:820px){.pgrid{grid-template-columns:1fr}}
+.res{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+.res .chip b{color:var(--accent);font-weight:500}
+
+/* month calendar */
+.cal{margin-top:34px;background:#201D18;border-radius:8px;padding:24px 24px 18px}
+.cal .ttl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.ruler{position:relative;height:18px;border-bottom:1px solid #3A352C;margin-bottom:6px}
+.ruler span{position:absolute;top:0;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
+.lane{margin-top:14px}
+.lane .nm{font-size:12.5px;color:var(--card);font-weight:600;margin-bottom:5px}
+.lane .nm small{font-weight:400;color:var(--cream-t);font-size:11.5px;margin-left:6px}
+.lane .tr{position:relative;height:12px;background:#2A261F;border-radius:6px}
+.lane .bar{position:absolute;top:0;height:12px;border-radius:6px;background:var(--blue)}
+.lane .bar.g{background:var(--accent)}
+.lane .bar.m{background:#7FA8D0}
+.cal .note{font-size:11.5px;color:var(--muted);margin-top:18px;line-height:1.5}
+
+/* marking steps */
+.steps{counter-reset:s;margin-top:18px}
+.steps .st{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid #2C2820}
+.steps .st:last-child{border:0}
+.steps .st::before{counter-increment:s;content:counter(s);flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--blue);color:var(--card);font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.steps .st p{font-size:13px;color:var(--cream-t);line-height:1.55}
+.steps .st p b{color:var(--card);font-weight:600}
+.pcard .lnk{display:inline-block;margin-top:14px;color:#7FA8D0;font-size:13px;text-decoration:none;font-weight:600}
+.pcard .lnk:hover{text-decoration:underline}
+.hero h1{max-width:20ch}
+.hero .stats{grid-template-columns:repeat(4,1fr)}
+@media (max-width:600px){.hero .stats{grid-template-columns:repeat(2,1fr)}}
+
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+@media (max-width:780px){.rgrid{grid-template-columns:1fr}}
+.rstat .lbl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.quote{margin-top:34px;background:var(--blue-bg);border-radius:8px;padding:30px 32px}
+.quote q{display:block;font-size:clamp(20px,2.6vw,26px);font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1.25;quotes:'«' '»'}
+.quote p{margin-top:14px;font-size:14px;line-height:1.7;color:var(--ink2);max-width:70ch}
+.big-line{font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--card);letter-spacing:-.02em;max-width:26ch;line-height:1.2;margin-top:6px}
+.big-line em{font-style:normal;color:var(--accent)}
+.facts{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fact{background:#201D18;border-radius:8px;padding:20px}
+.fact .n{font-size:30px;font-weight:900;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.fact .l{font-size:12.5px;color:var(--cream-t);margin-top:8px;line-height:1.5}
+@media (max-width:780px){.facts{grid-template-columns:1fr}}
+.hero h1{max-width:22ch}
+
+/* related cases */
+.related{margin-top:36px;padding-top:8px}
+.related h4{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.related .rl{display:flex;flex-wrap:wrap;gap:10px}
+.related .rl a{display:block;background:#201D18;color:var(--card);text-decoration:none;border-radius:6px;padding:11px 16px;font-size:13px;font-weight:600;border:1px solid #2C2820;min-width:200px}
+.related .rl a:hover{border-color:var(--blue);color:var(--accent)}
+.related .rl a small{display:block;font-weight:400;font-size:11px;color:var(--cream-t);margin-top:2px}
+h1,h2,h3{text-wrap:balance}
+@media (max-width:600px){.hero .stat{padding:16px 14px}.hero .stat .n{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Портфолио</a><span>Екатерина Дорохина · Marketing Portfolio</span></div>
+<div class="shell">
+
+<div class="hero">
+  <div class="idx">03 / система</div>
+  <h1>Из хаоса таймингов — в единый календарь</h1>
+  <p class="sub">Как агентство, выросшее из команды фрилансеров, получило процессы медиапланирования, бюджетирования и производства — и перестало платить за авралы.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">до −80%</div><div class="l">расхождений в цифрах между планом, сметой и отчётом</div></div>
+    <div class="stat"><div class="n">20 → 10–12 ч</div><div class="l">в неделю на медиапланы и сметы — на всю команду</div></div>
+    <div class="stat"><div class="n">5 дней → 3 дня</div><div class="l">внедрение нового проекта в команду</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">переплат подрядчикам за срочность (раньше 50–70 тыс ₽ раз в квартал)</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="idx">01 / точка А</div>
+  <h2>Каждый клиент жил в своём ритме</h2>
+  <p class="lede">До системы каждого клиента упаковывали в своё время и с разным горизонтом: кого-то планировали в начале месяца, кого-то в середине или конце; на месяц, на два, на три. Где-то постоянно что-то пересобиралось и перезапускалось, и никто не мог сказать, когда стартует и когда закончится подготовка по конкретному проекту.</p>
+  <p class="lede">Всё успевали, но стихийно. Готовность медиапланов, смет и коммерческих предложений предсказать было нельзя, материалы приходили кусками, а на координацию и бесконечные «что по готовности?» уходило слишком много времени. Самое дорогое следствие: срочные задачи подрядчикам, которые оплачивались с наценкой.</p>
+  <div class="two">
+    <div class="pain"><h4>Было</h4><ul>
+      <li>Свой тайминг у каждого клиента: старт, горизонт, дедлайны</li>
+      <li>Неизвестно, кто, что и когда сдаёт</li>
+      <li>Материалы готовятся кусками: одно есть, другого ещё нет</li>
+      <li>Аврал, срочные заказы подрядчикам и бесконечные пинги</li>
+    </ul></div>
+    <div class="gain"><h4>Стало</h4><ul>
+      <li>Единый календарь циклов и сроков по всем проектам</li>
+      <li>У каждой роли заранее известны даты и кому передавать результат</li>
+      <li>Шаблоны и порядок сборки: что, от кого и в каком виде</li>
+      <li>Заказ подрядчикам заранее, без наценки за срочность</li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="idx">02 / система</div>
+  <h2>Три процесса, которые держат проект</h2>
+  <p class="lede">Я прописала полный цикл: от плана и бюджета до производства рекламных материалов. Для каждого процесса есть регламент, шаблон и сроки. Сами документы планирования — медиаплан и маркетплан — разобраны в кейсе <a href="mediaplan.html" style="color:#7FA8D0;text-decoration:underline;text-underline-offset:3px">«Медиаплан и маркетплан»</a>.</p>
+
+  <div class="pcard main">
+    <div class="tag">Процесс 01 · ядро</div>
+    <h3>Медиапланирование и бюджетирование</h3>
+    <p class="what">Каждый проект ведётся двумя связанными документами. <b>Медиаплан</b> — по каждому каналу: какой бюджет и какие показатели нужны, чтобы выполнить план по сделкам клиента. <b>Маркетплан</b> — полный перечень работ и бюджетов с налогами: из него заключаются допсоглашения с клиентом, и всё, чего в нём нет, считается не согласованным.</p>
+    <div class="pgrid">
+      <div class="it"><h5>Сначала план, потом деньги</h5><p>Медиаплан считается от цели отдела продаж клиента и статистики прошлых периодов, затем бюджет переносится в маркетплан. Планы строятся на квартал вперёд.</p></div>
+      <div class="it"><h5>План = KPI специалиста</h5><p>Показатели медиаплана одновременно становятся плановыми показателями каждого специалиста по трафику: ответственность прозрачна.</p></div>
+      <div class="it"><h5>Сверка с финансами</h5><p>Каждый месяц маркетплан сверяется с финотделом на 1,5 месяца вперёд — любые новые суммы успевают законтрактовать до начала работ.</p></div>
+    </div>
+    <div class="cal"><div class="ttl">Операционный месяц · схема</div>
+<div class="ruler"><span style="left:1.61%">1</span><span style="left:20.97%">7</span><span style="left:37.10%">12</span><span style="left:43.55%">14</span><span style="left:62.90%">20</span><span style="left:79.03%">25</span><span style="left:98.39%">31</span></div>
+<div class="lane"><div class="nm">Сверка статистики за прошлый месяц<small>все проекты</small></div><div class="tr"><div class="bar " style="left:0.00%;width:22.58%"></div></div></div>
+<div class="lane"><div class="nm">Закрытие месяца аналитиками<small>сверка, когорты, перенос расходов в маркетплан</small></div><div class="tr"><div class="bar g" style="left:19.35%;width:25.81%"></div></div></div>
+<div class="lane"><div class="nm">Маркетплан → финотдел<small>отправка 8–10 числа, ответ до 12-го, 15:00</small></div><div class="tr"><div class="bar " style="left:22.58%;width:16.13%"></div></div></div>
+<div class="lane"><div class="nm">Проверка дашбордов<small>каждую неделю, пн–вт до 15:00</small></div><div class="tr"><div class="bar m" style="left:9.68%;width:6.45%"></div><div class="bar m" style="left:32.26%;width:6.45%"></div><div class="bar m" style="left:54.84%;width:6.45%"></div><div class="bar m" style="left:77.42%;width:6.45%"></div></div></div>
+<p class="note">Схема: сроки взяты из регламентов. Плюс раз в квартал — итоговая сверка всех проектов к 7-му числу следующего месяца: суммы маркетплана и медиаплана должны совпасть.</p></div>
+    <div class="res"><span class="chip">КП <b>через 1–2 рабочих дня после брифа</b></span><span class="chip">медиаплан и смета <b>за 5 рабочих дней</b></span><span class="chip">шаблоны <b>для крупных и мелких клиентов</b></span></div>
+  </div>
+
+  <div class="pcard">
+    <div class="tag">Процесс 02</div>
+    <h3>Аналитика и отчётность</h3>
+    <p class="what">Четыре цикла — еженедельный, раз в две недели, месячный и квартальный. Для каждого определено, какие данные аналитик собирает и проверяет сам, какие запрашивает у специалистов по трафику и что должно сойтись на выходе: расходы, бюджеты и воронка от заявки до сделки. Суммы медиаплана, маркетплана и дашборда сверяются на каждом цикле.</p>
+    <div class="res"><span class="chip">20 → 6 ч <b>в неделю на регулярную отчётность</b></span><span class="chip">4 цикла <b>одной системы</b></span></div>
+    <a class="lnk" href="analytics.html">Полный кейс про отдел аналитики →</a>
+  </div>
+
+  <div class="pcard">
+    <div class="tag">Процесс 03</div>
+    <h3>Производство рекламных материалов и маркировка</h3>
+    <p class="what">Специалист по трафику собирает ТЗ по шаблону, старший менеджер его проверяет, задача заводится в трекере, а все итерации правок идут в одном месте и в оговорённые сроки. Если материал нужно размещать по закону о маркировке, подключается отдельная цепочка: у каждой интеграции свой токен, каждый материал проходит проверку на обязательные пометки, а размещение закрывается актами. Раньше каждый брался за свой вопрос, когда замечал его или успевал; теперь у каждого есть алгоритм: кого он ждёт, кого спрашивает и кто кого пингует.</p>
+    <div class="steps">
+      <div class="st"><p><b>ТЗ по шаблону.</b> Каналы, технические требования, УТП и офферы, актуальные цены — в одном документе. Проверка старшим менеджером до передачи в продакшн.</p></div>
+      <div class="st"><p><b>Задача в трекере.</b> По названию понятно, что нужно сделать; обсуждение в комментариях; сроки первых этапов — минимум за 4 дня до выхода.</p></div>
+      <div class="st"><p><b>Токен на каждую интеграцию.</b> Запрашивается под конкретного контрагента, дату, договор и стоимость, вносится в медиаплан.</p></div>
+      <div class="st"><p><b>Маркировка материала и ссылки.</b> Пометка «реклама», данные рекламодателя и токен — в креативе или в тексте; токен зашивается в ссылку с метками, ссылка сокращается.</p></div>
+      <div class="st"><p><b>Юристы, документы, снятие.</b> Проверка дисклеймеров и токенов, договоры и акты, снятие объявления через 30 дней.</p></div>
+    </div>
+    <div class="res"><span class="chip">0 <b>штрафов по маркировке</b></span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="idx">03 / деньги</div>
+  <h2>Срочность стоила денег. Теперь не стоит</h2>
+  <p class="lede">Примерно раз в квартал случался аврал: срочно нужен лендинг. Базово он стоил около 80 тыс ₽, а за срочность подрядчик брал до ×2, то есть переплата составляла 50–70 тыс ₽. Клиенту эту наценку агентство не выставляло и брало на себя, поэтому на производстве таких лендингов маржа периодически падала до нуля.</p>
+  <p class="lede">Когда заказы начали уходить подрядчикам по календарю, а не в аврале, срочные заказы исчезли вместе с переплатой. Эту потерянную маржу система вернула агентству.</p>
+  <div class="rgrid">
+    <div class="rstat"><div class="lbl">Переплата за срочность</div><div class="before-after"><span class="old">50–70 тыс ₽ / квартал</span><span class="arrow">→</span><span class="new">0</span></div><p>Примерно раз в квартал, на лендингах: базовая стоимость около 80 тыс ₽, срочная — до ×2, то есть переплата 50–70 тыс ₽ за случай.</p></div>
+    <div class="rstat"><div class="lbl">Расхождения в цифрах</div><div class="before-after"><span class="old">~5 замечаний в неделю</span><span class="arrow">→</span><span class="new">1–2</span></div><p>Ошибкой считалось расхождение: запланировали один бюджет, а в отчётности другой, смета не сходится с медиапланом, рассинхрон в таблицах. Считала по числу вопросов и замечаний в рабочих чатах каждую неделю: это снижение на 70–80%.</p></div>
+    <div class="rstat"><div class="lbl">Время команды на медиапланы и сметы</div><div class="before-after"><span class="old">20 ч / нед</span><span class="arrow">→</span><span class="new">10–12 ч</span></div><p>Общее время всей команды по всем проектам. Каждый специалист заполняет свою строку медиаплана, и раз все готовятся заранее, на это уходит меньше времени.</p></div>
+    <div class="rstat"><div class="lbl">Внедрение нового проекта в команду</div><div class="before-after"><span class="old">5 дней</span><span class="arrow">→</span><span class="new">3 дня</span></div><p>Стандартизированы бриф, паспорт проекта и база знаний. За три дня собираем все вводные, сырьё для продакшена, материалы и ограничения, и команда получает готовый пакет, с которого можно стартовать.</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="idx">04 / клиент</div>
+  <h2>Клиент знает, когда и что получит</h2>
+  <p class="lede">Клиент заранее знал, когда получит коммерческое предложение (1–2 рабочих дня после брифа), когда будут готовы медиаплан и смета (за 5 рабочих дней), и мог планировать свои согласования и обратную связь. Мы называли реальные сроки с запасом на срочность и согласование и не обещали «как получится».</p>
+  <p class="lede">Календарь помогал и в личных встречах: мы знали, в какие числа готовим отчётность и планируем медиапланы, и приезжали к клиенту в даты, когда точно готовы.</p>
+  <div class="callout"><p><b>Единая навигация.</b> Документы по каждому проекту одинаковые и формализованные. Если у клиента несколько проектов, везде найдёшь данные в тех же местах, и для команды, и для заказчика. Это не причина, по которой клиенты оставались, но это работало на удобство и лояльность.</p></div>
+</div>
+
+<div class="section">
+  <div class="idx">05 / масштаб</div>
+  <h2>Система живёт без меня</h2>
+  <div class="facts">
+    <div class="fact"><div class="n">4–6</div><div class="l">проектов параллельно, из них 3 крупных клиента</div></div>
+    <div class="fact"><div class="n">15+</div><div class="l">человек работает по процессам: трафик, продакшн, финансы, аналитика, помощник проджекта</div></div>
+    <div class="fact"><div class="n">2</div><div class="l">набора шаблонов: для крупных клиентов с повышенными требованиями к документам и упрощённый для мелких</div></div>
+  </div>
+  <p class="lede" style="margin-top:30px">Процессы работали в мой отпуск и продолжают работать после того, как я ушла из команды: команда трафика, финансы и помощник проджекта работают по процессам медиапланирования и бюджетирования, а весь отдел аналитики — по своим циклам.</p>
+</div>
+
+<div class="section">
+  <div class="idx">06 / моя роль</div>
+  <h2>Самое сложное — не написать процесс, а внедрить его</h2>
+  <p class="lede">Я придумала и написала всё сама, как архитектор: видела начало процесса, его этапы и конец в виде измеримого результата. Знала команду и специфику каналов трафика, аналитики, продакшена и IT, поэтому сроки и этапы были реальными, ведь процессы сначала отрабатывались на практике, а я их фиксировала в документах и схемах.</p>
+  <p class="lede">Но описать процесс — это половина успеха. Вторая половина сложнее: <b style="color:var(--card)">команда, которая раньше работала по законам фриланса, должна была начать работать как агентство.</b> Мы выросли, и без понятных процессов масштабироваться было невозможно. Я продавала процессы команде не как правила, а как экономию их собственного времени, сил и нервов: понятно, предсказуемо, прозрачно.</p>
+  <div class="quote">
+    <q>Катя, нам на стыке нужен процесс</q>
+    <p>Эти слова сказали мне те, кто сначала сопротивлялся и хотел остаться «вольными пловцами». Поработав по отлаженным процессам, они столкнулись с затыком на стыке двух отделов, где процесса не было, и сами пришли с запросом: разделить зоны ответственности, сроки и этапы. Для меня это главный критерий успеха: люди поняли, что с процессами им удобнее, проще и безопаснее.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="idx">07 / итог</div>
+  <div class="big-line">Меньше хаоса, меньше стресса и <em>ни рубля</em> за срочность</div>
+  <div class="final-split">
+    <div class="final-col before"><h4>Было</h4><ul><li>Разные тайминги у каждого клиента</li><li>Срочные заказы подрядчикам с наценкой до ×2</li><li>Периодически нулевая маржа на производстве лендингов</li><li>Расхождения в цифрах и бесконечные пинги</li></ul></div>
+    <div class="final-arrow">→</div>
+    <div class="final-col after"><h4>Стало</h4><ul><li>Единый календарь и шаблоны под тип клиента</li><li>Заказы подрядчикам по плану, без наценки</li><li>Маржа на лендингах не проседает из-за срочности</li><li>Предсказуемые сроки для клиента и спокойная команда</li></ul></div>
+  </div>
+</div>
+<div class="related"><h4>Другие кейсы</h4><div class="rl"><a href="performance.html">Перформанс-маркетинг<small>воронка и ROMI</small></a><a href="analytics.html">Построение отдела аналитики<small>дашборд как продукт</small></a><a href="team.html">Команда и KPI<small>прозрачная мотивация</small></a><a href="mediaplan.html">Медиаплан и маркетплан<small>от цели клиента к счетам</small></a></div></div>
+
+<div class="footer">
+  <a href="processes-map.html">Интерактивная карта процессов →</a>
+  <span class="tg">связаться: <a href="https://t.me/ro_kate">tg @ro_kate</a></span>
+</div>
+</div>
+<div style="text-align:center;padding:18px 16px 26px;font:11px/1.5 'IBM Plex Mono',ui-monospace,monospace;color:#8A8272;letter-spacing:.04em">© 2026 Екатерина Дорохина. Все права защищены. Копирование и использование материалов без разрешения автора запрещено.</div>
+</body>
+</html>

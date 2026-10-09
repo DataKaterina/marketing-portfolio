@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейс: Медиаплан и маркетплан — Екатерина Дорохина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:     #1A1815;
+  --card:   #F6F2EA;
+  --card2:  #EFE9DC;
+  --ink:    #17150F;
+  --ink2:   #4A443A;
+  --blue:   #4F7DAB;
+  --blue-d: #2F5C8A;
+  --blue-bg:#D9E6F2;
+  --accent: #E8C15A;
+  --muted:  #8A8272;
+  --rule:   #DAD2C2;
+  --cream-t:#A69E8C;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ══ TOP BAR ══ */
+.topbar{
+  max-width:1100px;margin:0 auto;padding:20px 26px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;color:var(--cream-t);
+}
+.topbar a{color:#7FA8D0;text-decoration:none}
+.topbar a:hover{text-decoration:underline}
+
+/* ══ SHELL ══ */
+.shell{max-width:1100px;margin:0 auto;padding:0 26px 100px}
+
+/* ══ HERO ══ */
+.hero{padding:64px 0 40px;border-bottom:1px solid #2C2820}
+.hero .idx{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;
+}
+.hero h1{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(32px,5vw,54px);font-weight:900;color:var(--card);
+  letter-spacing:-.03em;line-height:1.04;max-width:16ch;
+}
+.hero .sub{
+  font-size:16px;color:var(--cream-t);margin-top:18px;max-width:52ch;line-height:1.6;
+}
+.hero .stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  margin-top:44px;background:#2C2820;border-radius:6px;overflow:hidden;
+}
+.hero .stat{background:#201D18;padding:20px 18px}
+.hero .stat .n{font-size:26px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
+.hero .stat .l{font-size:11px;color:var(--cream-t);margin-top:6px;line-height:1.4}
+
+/* ══ SECTION SHELL ══ */
+.section{padding:72px 0;border-bottom:1px solid #2C2820}
+.section:last-of-type{border-bottom:none}
+.section .idx{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;
+}
+.section h2{
+  font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--card);
+  letter-spacing:-.02em;max-width:22ch;margin-bottom:20px;
+}
+.section .lede{font-size:15.5px;color:#C9C2B4;max-width:64ch;line-height:1.75}
+.section .lede + .lede{margin-top:14px}
+
+/* ══ 01 POINT A — text + scattered-tables illustration ══ */
+.pointA{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.pointA .art{display:flex;justify-content:center}
+@media (max-width:820px){.pointA{grid-template-columns:1fr}.pointA .art{order:-1}}
+
+/* ══ 02 ARCHITECTURE — full width image card ══ */
+.arch-img{
+  margin-top:36px;background:var(--card);border-radius:8px;padding:18px;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.arch-img img{width:100%;display:block;border-radius:3px}
+.arch-legend{
+  margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.arch-legend .item{border-left:2px solid var(--blue);padding-left:14px}
+.arch-legend .item h4{font-size:12.5px;font-weight:700;color:var(--card);margin-bottom:5px}
+.arch-legend .item p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:820px){.arch-legend{grid-template-columns:1fr}}
+
+/* ══ 03 TEAM & TIMELINE ══ */
+.timeline{margin-top:44px;position:relative;padding-left:2px}
+.timeline .track{
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+}
+.timeline .track::before{
+  content:'';position:absolute;top:7px;left:0;right:0;height:1px;background:var(--rule);opacity:.25;
+}
+.tl-step{position:relative;padding-top:26px;padding-right:24px}
+.tl-step::before{
+  content:'';position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;
+  background:var(--accent);border:3px solid var(--bg);
+}
+.tl-step .when{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue);margin-bottom:6px}
+.tl-step h4{font-size:14px;font-weight:700;color:var(--card);margin-bottom:6px}
+.tl-step p{font-size:13px;color:var(--cream-t);line-height:1.55}
+@media (max-width:680px){.timeline .track{grid-template-columns:1fr;gap:28px}.timeline .track::before{display:none}}
+
+.team{margin-top:52px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.role{background:#201D18;border-radius:6px;padding:18px 14px;text-align:center}
+.role .ic{width:34px;height:34px;margin:0 auto 12px;color:var(--blue)}
+.role h5{font-size:12px;font-weight:700;color:var(--card);line-height:1.3}
+.role span{display:block;font-size:10.5px;color:var(--cream-t);margin-top:5px}
+@media (max-width:820px){.team{grid-template-columns:repeat(2,1fr)}}
+
+/* ══ 04 SCALE ══ */
+.scale-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:44px;margin-top:36px}
+.scale-num{background:#201D18;border-radius:8px;padding:36px 30px}
+.scale-num .n{font-size:56px;font-weight:900;color:var(--accent);letter-spacing:-.03em;line-height:1}
+.scale-num .l{font-size:13px;color:var(--cream-t);margin-top:12px;line-height:1.5;max-width:22ch}
+.scale-text p{font-size:14.5px;color:#C9C2B4;line-height:1.75}
+.scale-text p+p{margin-top:14px}
+@media (max-width:780px){.scale-grid{grid-template-columns:1fr}}
+
+/* ══ 05 RESULT ══ */
+.result-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start;margin-top:36px}
+.browser-mock{
+  background:var(--card);border-radius:8px;overflow:hidden;
+  box-shadow:0 16px 44px rgba(0,0,0,.4);
+}
+.browser-mock .bar{
+  background:var(--card2);padding:9px 14px;display:flex;gap:6px;align-items:center;
+  border-bottom:1px solid var(--rule);
+}
+.browser-mock .bar span{width:9px;height:9px;border-radius:50%;background:#D8CFBC}
+.browser-mock img{width:100%;display:block}
+.result-stats{display:flex;flex-direction:column;gap:18px}
+.rstat{background:#201D18;border-radius:8px;padding:22px}
+.rstat .before-after{
+  display:flex;align-items:baseline;gap:10px;font-weight:800;letter-spacing:-.02em;
+}
+.rstat .before-after .old{font-size:19px;color:var(--muted);text-decoration:line-through;text-decoration-color:#6B6558}
+.rstat .before-after .arrow{color:var(--blue);font-size:16px}
+.rstat .before-after .new{font-size:26px;color:var(--accent)}
+.rstat p{font-size:12.5px;color:var(--cream-t);margin-top:10px;line-height:1.5}
+@media (max-width:820px){.result-grid{grid-template-columns:1fr}}
+
+.callout{
+  margin-top:40px;background:var(--blue-bg);border-radius:8px;padding:26px 28px;
+  color:var(--ink2);
+}
+.callout p{font-size:14px;line-height:1.7}
+.callout p b{color:var(--ink);font-weight:700}
+
+/* ══ 04 ORG & PROCESS ══ */
+.org-split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+.org-level{background:#201D18;border-radius:8px;padding:24px}
+.org-level h4{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.org-level p{font-size:13.5px;color:var(--cream-t);line-height:1.6}
+@media (max-width:780px){.org-split{grid-template-columns:1fr}}
+
+.flow{margin-top:36px;display:flex;flex-direction:column}
+.flow-step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #2C2820}
+.flow-step:last-child{border-bottom:none}
+.flow-step .num{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--blue);color:var(--card);font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.flow-step .txt h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:3px}
+.flow-step .txt p{font-size:12.5px;color:var(--cream-t);line-height:1.5}
+
+/* ══ 05 METRICS ══ */
+.metric-group{margin-top:32px}
+.metric-group h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:#201D18;border:1px solid #2C2820;border-radius:20px;padding:8px 16px;font-size:12.5px;color:var(--card);font-family:'IBM Plex Mono',monospace}
+
+/* ══ 06 AUDIENCES ══ */
+.aud-grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.aud-card{background:#201D18;border-radius:8px;padding:22px 20px;border-top:3px solid var(--blue)}
+.aud-card h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:8px}
+.aud-card p{font-size:12.5px;color:var(--cream-t);line-height:1.6}
+@media (max-width:820px){.aud-grid{grid-template-columns:1fr}}
+
+/* ══ 09 FINAL SUMMARY ══ */
+.final-split{margin-top:36px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center}
+.final-col{background:#201D18;border-radius:8px;padding:24px}
+.final-col.before{opacity:.75}
+.final-col h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.final-col.before h4{color:var(--muted)}
+.final-col.after h4{color:var(--accent)}
+.final-col ul{padding-left:18px;color:var(--cream-t);font-size:13px;line-height:1.8}
+.final-arrow{color:var(--blue);font-size:22px;text-align:center}
+@media (max-width:780px){.final-split{grid-template-columns:1fr}.final-arrow{transform:rotate(90deg)}}
+
+/* ══ FOOTER ══ */
+.footer{padding:56px 0 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer a{
+  color:var(--card);text-decoration:none;font-weight:600;font-size:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.footer a:hover{color:var(--accent)}
+.footer .tg{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--cream-t)}
+.footer .tg a{color:#7FA8D0;font-weight:400;font-size:11px}
+
+@media (max-width:600px){
+  .hero .stats{grid-template-columns:repeat(2,1fr)}
+  .shell{padding:0 18px 70px}
+  .hero{padding:44px 0 32px}
+}
+
+/* ── process case extras ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+.pain{background:#201D18;border-radius:8px;padding:24px;border-left:3px solid #6B6558}
+.pain h4,.gain h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.pain h4{color:var(--muted)}
+.pain ul,.gain ul{list-style:none}
+.pain li,.gain li{font-size:13.5px;line-height:1.55;padding:7px 0 7px 18px;position:relative;border-bottom:1px solid #2C2820}
+.pain li:last-child,.gain li:last-child{border:0}
+.pain li{color:#9A9282}
+.pain li::before{content:'×';position:absolute;left:0;color:#6B6558}
+.gain{background:#201D18;border-radius:8px;padding:24px;border-left:3px solid var(--accent)}
+.gain h4{color:var(--accent)}
+.gain li{color:#C9C2B4}
+.gain li::before{content:'✓';position:absolute;left:0;color:var(--accent)}
+@media (max-width:780px){.two{grid-template-columns:1fr}}
+
+.chaos{display:flex;justify-content:center}
+.pcard{background:#201D18;border-radius:8px;padding:26px 24px;margin-top:20px}
+.pcard .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.pcard h3{font-size:20px;font-weight:800;color:var(--card);letter-spacing:-.02em;margin:6px 0 10px}
+.pcard .what{font-size:14px;color:#C9C2B4;line-height:1.7;max-width:70ch}
+.pcard.main{border-top:3px solid var(--accent)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.pgrid .it{border-left:2px solid var(--blue);padding-left:14px}
+.pgrid .it h5{font-size:12.5px;font-weight:700;color:var(--card);margin-bottom:5px}
+.pgrid .it p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:820px){.pgrid{grid-template-columns:1fr}}
+.res{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+.res .chip b{color:var(--accent);font-weight:500}
+
+/* month calendar */
+.cal{margin-top:34px;background:#201D18;border-radius:8px;padding:24px 24px 18px}
+.cal .ttl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.ruler{position:relative;height:18px;border-bottom:1px solid #3A352C;margin-bottom:6px}
+.ruler span{position:absolute;top:0;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
+.lane{margin-top:14px}
+.lane .nm{font-size:12.5px;color:var(--card);font-weight:600;margin-bottom:5px}
+.lane .nm small{font-weight:400;color:var(--cream-t);font-size:11.5px;margin-left:6px}
+.lane .tr{position:relative;height:12px;background:#2A261F;border-radius:6px}
+.lane .bar{position:absolute;top:0;height:12px;border-radius:6px;background:var(--blue)}
+.lane .bar.g{background:var(--accent)}
+.lane .bar.m{background:#7FA8D0}
+.cal .note{font-size:11.5px;color:var(--muted);margin-top:18px;line-height:1.5}
+
+/* marking steps */
+.steps{counter-reset:s;margin-top:18px}
+.steps .st{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid #2C2820}
+.steps .st:last-child{border:0}
+.steps .st::before{counter-increment:s;content:counter(s);flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--blue);color:var(--card);font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.steps .st p{font-size:13px;color:var(--cream-t);line-height:1.55}
+.steps .st p b{color:var(--card);font-weight:600}
+.pcard .lnk{display:inline-block;margin-top:14px;color:#7FA8D0;font-size:13px;text-decoration:none;font-weight:600}
+.pcard .lnk:hover{text-decoration:underline}
+.hero h1{max-width:20ch}
+.hero .stats{grid-template-columns:repeat(4,1fr)}
+@media (max-width:600px){.hero .stats{grid-template-columns:repeat(2,1fr)}}
+
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+@media (max-width:780px){.rgrid{grid-template-columns:1fr}}
+.rstat .lbl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.quote{margin-top:34px;background:var(--blue-bg);border-radius:8px;padding:30px 32px}
+.quote q{display:block;font-size:clamp(20px,2.6vw,26px);font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1.25;quotes:'«' '»'}
+.quote p{margin-top:14px;font-size:14px;line-height:1.7;color:var(--ink2);max-width:70ch}
+.big-line{font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--card);letter-spacing:-.02em;max-width:26ch;line-height:1.2;margin-top:6px}
+.big-line em{font-style:normal;color:var(--accent)}
+.facts{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fact{background:#201D18;border-radius:8px;padding:20px}
+.fact .n{font-size:30px;font-weight:900;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.fact .l{font-size:12.5px;color:var(--cream-t);margin-top:8px;line-height:1.5}
+@media (max-width:780px){.facts{grid-template-columns:1fr}}
+.hero h1{max-width:22ch}
+
+.hero h1{max-width:20ch}
+.paybar{margin-top:30px;display:flex;border-radius:8px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.paybar .seg{padding:26px 24px;flex:1}
+.paybar .fix{background:var(--blue-bg);color:#17150F}
+.paybar .bon{background:var(--accent);color:#17150F}
+.paybar .seg h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;opacity:.85}
+.paybar .seg p{font-size:14px;line-height:1.55;font-weight:600}
+.paybar-note{font-size:11.5px;color:var(--muted);margin-top:10px}
+@media (max-width:640px){.paybar{flex-direction:column}}
+.ladder{margin-top:30px;background:#201D18;border-radius:8px;padding:26px 24px}
+.ladder .ttl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.steps5{display:flex;align-items:flex-end;gap:10px;height:150px}
+.steps5 .c{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.steps5 .b{background:var(--blue-bg);border-radius:4px 4px 0 0}
+.steps5 .c.top .b{background:var(--accent);opacity:1}
+.steps5 .c.zero .b{background:#3A352C}
+.labels5{display:flex;gap:10px;margin-top:10px}
+.labels5 span{flex:1;font-size:11.5px;color:var(--cream-t);line-height:1.4;text-align:center}
+@media (max-width:640px){.labels5 span{font-size:10px}}
+.range{margin-top:30px;background:#201D18;border-radius:8px;padding:26px 24px}
+.range .ttl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.rline{position:relative;height:56px}
+.rline .rail{position:absolute;left:0;right:0;top:26px;height:2px;background:#3A352C}
+.rline .zone{position:absolute;left:12%;right:12%;top:18px;height:18px;border-radius:9px;background:linear-gradient(90deg,var(--blue-bg),var(--accent))}
+.rline .pin{position:absolute;top:0;font-size:11.5px;color:var(--card);font-weight:600;transform:translateX(-50%);white-space:nowrap}
+.rline .pin.l{left:12%}.rline .pin.r{left:88%}
+.rline .pin.m{left:50%;top:40px;color:var(--cream-t);font-weight:400}
+.dates{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.dates .d{background:#201D18;border-radius:8px;padding:18px;border-top:3px solid var(--blue)}
+.dates .d .w{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:6px}
+.dates .d h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:6px}
+.dates .d p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:860px){.dates{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.dates{grid-template-columns:1fr}}
+.gates{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;counter-reset:g}
+.gates .g{background:#201D18;border-radius:6px;padding:16px;font-size:12.5px;color:var(--ink2);color:#C9C2B4;line-height:1.5;position:relative}
+.gates .g::before{counter-increment:g;content:counter(g);display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:6px}
+@media (max-width:860px){.gates{grid-template-columns:1fr 1fr}}
+.rules3{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rules3 .r{background:#201D18;border-radius:8px;padding:20px}
+.rules3 .r h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:6px}
+.rules3 .r p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+.rules3 .r.ok{border-top:3px solid var(--accent)}.rules3 .r.mid{border-top:3px solid var(--blue)}.rules3 .r.no{border-top:3px solid #6B6558}
+@media (max-width:780px){.rules3{grid-template-columns:1fr}}
+
+.doclink{display:flex;align-items:center;gap:14px;margin-top:22px;background:var(--blue-bg);color:var(--ink);text-decoration:none;border-radius:8px;padding:16px 20px;max-width:560px;flex-wrap:wrap}
+.doclink .dl-t{font-weight:700;font-size:14.5px}
+.doclink .dl-s{font-size:12px;color:var(--ink2);flex:1 1 220px}
+.doclink .dl-a{font-size:18px;color:var(--blue-d);font-weight:700}
+.doclink:hover{background:#C9DBEC}
+.qwrap{margin-top:16px;overflow-x:auto}
+.qt{width:100%;border-collapse:collapse;font-size:11.5px;min-width:900px}
+.qt th{font-size:10px;font-weight:600;color:var(--cream-t);padding:6px 6px;text-align:right;border-bottom:1px solid #3A352B;line-height:1.25}
+.qt th:first-child,.qt td:first-child{text-align:left}
+.qt th.mh{text-align:center;color:var(--card);font-size:11px;border-bottom:1px solid #3A352B;border-left:1px solid #3A352B}
+.qt th.q,.qt td.q{background:#26221C}
+.qt td{padding:8px 6px;text-align:right;color:#C9C2B4;border-bottom:1px solid #2C2820;white-space:nowrap}
+.qt td.c1{color:var(--card);font-weight:600}
+.qt td.car{background:var(--blue-bg);color:var(--ink);font-weight:700}
+.qt tr.tt td{border-top:1px solid #3A352B;color:var(--card);font-weight:700}
+.qt tr.tt td.car{color:var(--ink)}
+.qt td.q{color:var(--card)}
+/* ── media/market plan case ── */
+.callout.reserve{background:#2F4A66;color:#DCE8F4;margin-top:18px}.callout.reserve p b{color:#fff}
+.note-disc{background:#201D18;border-left:3px solid var(--accent);border-radius:6px;padding:16px 20px;font-size:13.5px;color:#C9C2B4;line-height:1.6}
+.note-disc b{color:var(--accent)}
+.chain5{margin-top:36px;display:grid;grid-template-columns:1fr auto 1.2fr auto 1.3fr auto 1fr auto 1.1fr;gap:8px;align-items:stretch}
+.chain5 .cn{background:#201D18;border-radius:8px;padding:16px 14px;border-top:2px solid #3A352B}
+.chain5 .cn.key{border-top-color:var(--accent)}
+.chain5 .who{font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px;line-height:1.35}
+.chain5 h5{font-size:14px;font-weight:700;color:var(--card);margin-bottom:5px}
+.chain5 p{font-size:11.5px;color:var(--cream-t);line-height:1.5}
+.chain5 .ar{align-self:center;color:var(--blue);font-size:18px}
+@media (max-width:980px){.chain5{grid-template-columns:1fr}.chain5 .ar{transform:rotate(90deg);justify-self:center}}
+.mp-head{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mp-card{background:#201D18;border-radius:8px;padding:22px}
+.mp-card h4{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.mp-card h4 small{font-weight:400;color:var(--cream-t);letter-spacing:.04em;text-transform:none;margin-left:8px}
+.par{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid #2C2820;font-size:13px;color:#C9C2B4}
+.par b{color:var(--card);font-weight:700;white-space:nowrap}
+.derived{margin-top:14px;font-size:12.5px;color:var(--cream-t);line-height:1.6}
+.derived b{color:var(--accent)}
+@media (max-width:780px){.mp-head{grid-template-columns:1fr}}
+.formula{margin-top:18px;background:#201D18;border-radius:8px;padding:22px}
+.fh{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.fs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.fs span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue)}
+.fb{background:#2A261F;border-radius:6px;padding:10px 14px;text-align:center;min-width:84px}
+.fb b{display:block;font-size:16px;font-weight:800;color:var(--card)}
+.fb small{font-size:10.5px;color:var(--cream-t)}
+.fb.acc{background:var(--blue-bg)}.fb.acc b{color:var(--ink)}.fb.acc small{color:var(--ink2)}
+.fn{margin-top:14px;font-size:12.5px;color:var(--cream-t);line-height:1.6}
+.mp-table-wrap,.mk-wrap,.period{margin-top:18px;background:#201D18;border-radius:8px;padding:22px;overflow-x:auto}
+.tb-cap{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.tb-cap small{font-weight:400;color:var(--cream-t);text-transform:none;letter-spacing:.03em;margin-left:8px}
+.mpt,.mkt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:620px}
+.mpt th,.mkt th{text-align:left;font-size:10.5px;font-weight:600;color:var(--cream-t);padding:8px 10px;border-bottom:1px solid #3A352B;white-space:nowrap}
+.mpt td,.mkt td{padding:9px 10px;border-bottom:1px solid #2C2820;color:#C9C2B4;vertical-align:top}
+.mpt td.c1,.mkt td.c1{color:var(--card);font-weight:600}
+.mpt td.role{color:var(--cream-t);font-size:12px}
+.mpt td:nth-child(n+3){text-align:right;white-space:nowrap}.mpt th:nth-child(n+3){text-align:right}
+.mkt td.num{text-align:right;white-space:nowrap;color:var(--card);font-weight:600}.mkt th:nth-child(4){text-align:right}
+.mkt td.cm{color:var(--cream-t);font-size:11.5px}.mkt td.le{color:var(--cream-t);white-space:nowrap;font-size:11.5px}
+.tp{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:10px}
+.tp.b{background:var(--blue-bg);color:var(--blue-d)}.tp.w{background:#3A3322;color:var(--accent)}
+.mkt tr.w td.c1{padding-left:22px;font-weight:500}
+.totals{margin-top:16px;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:#2C2820;border-radius:6px;overflow:hidden;min-width:620px}
+.totals .t{background:#26221C;padding:12px 14px}
+.totals .t span{display:block;font-size:10.5px;color:var(--cream-t);line-height:1.35}
+.totals .t b{display:block;margin-top:4px;font-size:15px;color:var(--card)}
+.totals .t.all b{color:var(--accent)}.totals .t.rsv b{color:#9FC0E0}.tp.r{background:#2F4A66;color:#CFE2F5}.mkt tr.r td{background:#232A33}
+.pr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.pr span{color:var(--blue);font-size:16px}
+.pb{background:#2A261F;border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--card);font-weight:600}
+.pb.acc{background:var(--blue-bg);color:var(--ink)}
+.steps3{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.s3{background:#201D18;border-radius:8px;padding:20px}
+.s3 .no{width:26px;height:26px;border-radius:50%;background:var(--blue);color:var(--card);font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.s3 h5{font-size:14px;font-weight:700;color:var(--card);margin-bottom:5px}
+.s3 p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:780px){.steps3{grid-template-columns:1fr}}
+.grid6{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g6{background:#201D18;border-radius:8px;padding:20px;border-top:2px solid #3A352B}
+.g6 h5{font-size:13.5px;font-weight:700;color:var(--card);margin-bottom:6px}
+.g6 p{font-size:12.5px;color:var(--cream-t);line-height:1.55}
+@media (max-width:900px){.grid6{grid-template-columns:1fr 1fr}}@media (max-width:600px){.grid6{grid-template-columns:1fr}.totals{display:block}.totals .t{border-bottom:1px solid #2C2820}}
+
+/* related cases */
+.related{margin-top:36px;padding-top:8px}
+.related h4{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.related .rl{display:flex;flex-wrap:wrap;gap:10px}
+.related .rl a{display:block;background:#201D18;color:var(--card);text-decoration:none;border-radius:6px;padding:11px 16px;font-size:13px;font-weight:600;border:1px solid #2C2820;min-width:200px}
+.related .rl a:hover{border-color:var(--blue);color:var(--accent)}
+.related .rl a small{display:block;font-weight:400;font-size:11px;color:var(--cream-t);margin-top:2px}
+h1,h2,h3{text-wrap:balance}
+@media (max-width:600px){.hero .stat{padding:16px 14px}.hero .stat .n{font-size:22px}}
+@media (max-width:600px){.mp-table-wrap::before,.mk-wrap::before,.qwrap::before{content:'← таблица листается вбок →';display:block;position:sticky;left:0;font:10px 'IBM Plex Mono',monospace;color:#8A8272;margin-bottom:10px}.qwrap::before{margin-bottom:6px}}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Портфолио</a><span>Екатерина Дорохина · Marketing Portfolio</span></div>
+<div class="shell">
+
+<div class="hero">
+  <div class="idx">05 / система</div>
+  <h1>От цели клиента — к бюджету и счетам</h1>
+  <p class="sub">Как медиаплан и маркетплан стали единой системой планирования: на ней держатся работа команды, согласование с клиентом и финансовые документы.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">от KPI</div><div class="l">план строится от целевых сделок клиента, а не от желаний канала</div></div>
+    <div class="stat"><div class="n">2 документа</div><div class="l">медиаплан — первичный, маркетплан — основополагающий</div></div>
+    <div class="stat"><div class="n">квартал</div><div class="l">горизонт планирования, с помесячной разбивкой</div></div>
+    <div class="stat"><div class="n">1–3%</div><div class="l">резерв внутри маркетплана на срочные работы и риски; остальное — только по согласованию</div></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:36px">
+  <div class="note-disc"><b>Важно.</b> Все цифры на этой странице условные: они придуманы, чтобы показать логику документов, и не относятся ни к одному реальному проекту. Названия проектов, подрядчиков и юридических лиц убраны. Шапки и структура документов перерисованы по реальным рабочим файлам. Полные примеры документов открываются по ссылкам в разделах про медиаплан и маркетплан.</div>
+</div>
+
+<div class="section">
+  <div class="idx">01 / цепочка</div>
+  <h2>Один поток документов — от предложения до акта</h2>
+  <p class="lede">Каждый следующий документ строится на предыдущем. Цифра, которой нет в начале цепочки, не появится в конце — ни в смете, ни в счёте.</p>
+  <div class="chain5">
+    <div class="cn"><div class="who">Руководитель проекта</div><h5>Коммерческое предложение</h5><p>рамки, цели, ориентир по бюджету</p></div>
+    <div class="ar">→</div>
+    <div class="cn"><div class="who">Команда по каналам</div><h5>Медиаплан</h5><p>первичный документ: воронка, каналы, объёмы, стоимость обращения</p></div>
+    <div class="ar">→</div>
+    <div class="cn key"><div class="who">Помощник проджекта и я</div><h5>Маркетплан</h5><p>трафик из медиаплана + работы команды + сервисы = смета</p></div>
+    <div class="ar">→</div>
+    <div class="cn"><div class="who">Клиент</div><h5>Согласование</h5><p>правки, защита плана на встрече</p></div>
+    <div class="ar">→</div>
+    <div class="cn"><div class="who">Финансовый отдел</div><h5>Документы и счета</h5><p>на основе плана: договоры, счета, акты</p></div>
+  </div>
+  <div class="callout"><p><b>Правило системы:</b> если в маркетплане нет цифры или услуги — значит она не согласована с руководителем на стороне клиента. За неё мы не получим деньги, и по ней нужны отдельное согласование и дополнительное планирование. Поэтому маркетплан — основа для всей команды, а не отчёт по итогам.</p></div>
+  <div class="callout reserve"><p><b>Но система не жёсткая.</b> В маркетплан сразу закладывается резерв — обычно 1–3% от плана, в зависимости от ситуации. Он закрывает срочность и риски: дополнительных подрядчиков, небольшие работы, которые нужно сделать быстро. Резерв стоит в маркетплане, а не в медиаплане, поэтому срочная задача не ломает согласованную смету и не ждёт нового круга согласований.</p></div>
+</div>
+
+<div class="section">
+  <div class="idx">02 / медиаплан</div>
+  <h2>Медиаплан строится от цели, а не от каналов</h2>
+  <p class="lede">Исходная точка — целевое число сделок клиента на период. От неё вверх по воронке считается, сколько нужно целевых и валовых обращений, и только потом распределяется бюджет по каналам. Шапка документа — это вход: параметры, которые можно менять в одном месте.</p>
+
+  <div class="mp-head">
+    <div class="mp-card">
+      <h4>Параметры плана <small>условные</small></h4>
+      <div class="par"><span>Цель сделок за период</span><b>40</b></div>
+      <div class="par"><span>Конверсия «целевое обращение → сделка»</span><b>4%</b></div>
+      <div class="par"><span>Доля целевых среди валовых обращений</span><b>35%</b></div>
+      <div class="par"><span>НДС (единый параметр на весь файл)</span><b>22%</b></div>
+      <div class="par"><span>Плановая доля охватов в бюджете</span><b>25%</b></div>
+      <div class="par"><span>Период планирования</span><b>1 мес.</b></div>
+      <div class="derived">Нужно целевых ≈ <b>1 000</b><br>Нужно валовых ≈ <b>2 857</b></div>
+    </div>
+    <div class="mp-card">
+      <h4>Итог плана <small>считается сам</small></h4>
+      <div class="par"><span>Целевые обращения</span><b>880</b></div>
+      <div class="par"><span>Прогноз сделок</span><b>40</b></div>
+      <div class="par"><span>Бюджет с НДС</span><b>3 000 000 ₽</b></div>
+      <div class="par"><span>CPL целевого, с НДС</span><b>3 409 ₽</b></div>
+      <div class="par"><span>CPA сделки, с НДС</span><b>75 000 ₽</b></div>
+      <div class="par"><span>Доля охватов в бюджете</span><b>25%</b></div>
+      <div class="derived">Все показатели считаются и с НДС, и без НДС. План сравнивается с целью: <b>40</b> сделок при цели <b>40</b>. При плоской конверсии 4% понадобилось бы ≈1 000 целевых, но взвешенная конверсия по каналам даёт 4,5%, поэтому хватает 880.</div>
+    </div>
+  </div>
+
+  <div class="formula">
+    <div class="fh">Как считается один канал — от показов до бюджета</div>
+    <div class="fs">
+      <div class="fb"><b>400&nbsp;000</b><small>показов</small></div><span>× CTR 2,5%</span>
+      <div class="fb"><b>10&nbsp;000</b><small>кликов</small></div><span>× 5%</span>
+      <div class="fb"><b>500</b><small>валовых</small></div><span>× 40%</span>
+      <div class="fb"><b>200</b><small>целевых</small></div><span>× 6% (4% × коэфф. 1,5)</span>
+      <div class="fb"><b>12</b><small>сделок</small></div><span>× CPL 3&nbsp;000 × 200</span>
+      <div class="fb acc"><b>600&nbsp;000</b><small>бюджет канала, ₽</small></div>
+    </div>
+    <p class="fn">Коэффициент канала масштабирует общую гипотезу конверсии: горячий спрос из поиска закрывается лучше, холодный охват — хуже. Так в плане сразу видно качество каждого источника, а не только его цену.</p>
+  </div>
+
+  <div class="mp-table-wrap">
+    <div class="tb-cap">Блок «Лидген»: каналы, роль в воронке, метрики</div>
+    <table class="mpt"><thead><tr><th>Канал</th><th>Почему в воронке</th><th>Целевые</th><th>CR в сделку</th><th>Сделки</th><th>CPL, ₽</th><th>Бюджет, ₽</th></tr></thead><tbody><tr><td class="c1">Поиск (контекст)</td><td class="role">горячий спрос</td><td>200</td><td>6,0%</td><td>12</td><td>3 000</td><td>600 000</td></tr><tr><td class="c1">Классифайды</td><td class="role">нижняя часть воронки</td><td>250</td><td>4,0%</td><td>10</td><td>3 200</td><td>800 000</td></tr><tr><td class="c1">Соцсети и мессенджеры</td><td class="role">догрев и расширение</td><td>100</td><td>3,0%</td><td>3</td><td>3 500</td><td>350 000</td></tr><tr><td class="c1">Посевы</td><td class="role">тёплый спрос и доверие</td><td>100</td><td>5,0%</td><td>5</td><td>3 000</td><td>300 000</td></tr><tr><td class="c1">Геосервисы</td><td class="role">локальный спрос</td><td>80</td><td>5,0%</td><td>4</td><td>2 500</td><td>200 000</td></tr></tbody></table>
+    <div class="tb-cap" style="margin-top:20px">Блок «Охваты»: отдельный расчёт</div>
+    <table class="mpt"><thead><tr><th>Канал</th><th>Почему в воронке</th><th>Целевые</th><th>CR в сделку</th><th>Сделки</th><th>CPL, ₽</th><th>Бюджет, ₽</th></tr></thead><tbody><tr><td class="c1">Видео и медийка</td><td class="role">широкий прогрев, post-view до 14 дней</td><td>150</td><td>4,0%</td><td>6</td><td>5 000</td><td>750 000</td></tr></tbody></table>
+    <p class="fn">Охваты считаются отдельным блоком: показы, охват и частота, затем прямые обращения и post-view — отложенные обращения в окне до 14 дней. Доля охватов в бюджете — контрольная цифра, она видна в шапке.</p>
+  </div>
+  <a class="doclink" href="https://docs.google.com/spreadsheets/d/1o2BnsUSm3jf1Tcz2STDSbgjTqlr0ko18lC0TRAgYgJI/edit?gid=292450985#gid=292450985" target="_blank" rel="noopener noreferrer"><span class="dl-t">Открыть пример медиаплана</span><span class="dl-s">Google Sheets · воронка, каналы и метрики, условные цифры</span><span class="dl-a">↗</span></a>
+</div>
+
+<div class="section">
+  <div class="idx">03 / как рождается цифра</div>
+  <h2>Специалист вносит, помощник собирает, я финализирую</h2>
+  <p class="lede">Медиаплан — первичный документ, его собирает вся команда под руководством помощника проджекта. Каждый специалист заполняет свои каналы. Помощник сводит их в единый план и проверяет на согласованность. Я финализирую итог: при необходимости разговариваю с каждым специалистом отдельно по его цифрам.</p>
+  <div class="steps3">
+    <div class="s3"><div class="no">1</div><h5>Специалист</h5><p>Закладывает объёмы, стоимость обращения и конверсии по своим каналам.</p></div>
+    <div class="s3"><div class="no">2</div><h5>Помощник проджекта</h5><p>Собирает план команды, сверяет параметры, следит за единой логикой воронки.</p></div>
+    <div class="s3"><div class="no">3</div><h5>Проджект-директор</h5><p>Финализирует результат, обсуждает спорные цифры с каждым специалистом отдельно.</p></div>
+  </div>
+  <div class="callout"><p><b>Почему разговор с каждым — отдельно.</b> Специалист мотивирован по KPI именно на этот план, поэтому заинтересован его занизить. Мы разбираем цифры аргументированно: если я не согласна с какими-то показателями, мы корректируем их — в большую или меньшую сторону, исходя из конъюнктуры рынка и текущей ситуации с трафиком и лидгеном по проекту. Как устроена мотивация — в кейсе <a href="team.html" style="color:var(--blue-d)">«Команда и KPI»</a>.</p></div>
+</div>
+
+<div class="section">
+  <div class="idx">04 / маркетплан</div>
+  <h2>Маркетплан: трафик, работы команды и сервисы — в одной смете</h2>
+  <p class="lede">Из медиаплана в маркетплан переходят все цифры по трафику. К ним добавляются работы нашей команды и всё, что мы используем в проекте: лендинги, сервисы, продакшн. Каждая строка помечена типом — «бюджет» или «работы», и юридическим лицом, на которое пойдёт оплата. В конце сметы — резерв на срочность и риски.</p>
+
+  <div class="mk-wrap">
+    <div class="tb-cap">Лист планирования месяца <small>суммы условные, ₽</small></div>
+    <table class="mkt"><thead><tr><th>Тип</th><th>Юр. лицо</th><th>Канал / работа</th><th>Пополнение</th><th>Комментарий</th></tr></thead><tbody><tr class="b"><td><span class="tp b">Бюджет</span></td><td class="le">Юрлицо A</td><td class="c1">Контекст</td><td class="num">600 000</td><td class="cm">бюджет канала берётся из медиаплана</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Контекст — управление</td><td class="num">90 000</td><td class="cm">процент от бюджета канала, но не ниже минимального порога</td></tr><tr class="b"><td><span class="tp b">Бюджет</span></td><td class="le">Юрлицо C</td><td class="c1">Классифайды</td><td class="num">800 000</td><td class="cm">оплата за целевое обращение</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Классифайды — базовая часть</td><td class="num">80 000</td><td class="cm">плюс переменная часть по результату</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Классифайды — мотивация (прогноз)</td><td class="num">70 000</td><td class="cm">примерный прогноз по системе KPI, уточняется по факту</td></tr><tr class="b"><td><span class="tp b">Бюджет</span></td><td class="le">Юрлицо A</td><td class="c1">Соцсети и мессенджеры</td><td class="num">350 000</td><td class="cm"></td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Соцсети и мессенджеры — управление</td><td class="num">50 000</td><td class="cm"></td></tr><tr class="b"><td><span class="tp b">Бюджет</span></td><td class="le">Юрлицо D</td><td class="c1">Посевы</td><td class="num">300 000</td><td class="cm"></td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо D</td><td class="c1">Посевы — работы</td><td class="num">105 000</td><td class="cm">подбор площадок, маркировка, контроль размещений</td></tr><tr class="b"><td><span class="tp b">Бюджет</span></td><td class="le">Юрлицо A</td><td class="c1">Геосервисы</td><td class="num">200 000</td><td class="cm"></td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Геосервисы — работы</td><td class="num">15 000</td><td class="cm"></td></tr><tr class="b"><td><span class="tp b">Бюджет</span></td><td class="le">Юрлицо A</td><td class="c1">Видео и медийка</td><td class="num">750 000</td><td class="cm">цифры охватного блока из медиаплана</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Видео и медийка — работы</td><td class="num">60 000</td><td class="cm"></td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Команда менеджмента</td><td class="num">100 000</td><td class="cm">документооборот, маркировка, операционная работа</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Сквозная аналитика</td><td class="num">120 000</td><td class="cm">минимальная сумма на проект, зависит от каналов и бюджета</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо D</td><td class="c1">Продакшн: акции и трафиковые креативы</td><td class="num">110 000</td><td class="cm">объём исходя из прошлых периодов</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо B</td><td class="c1">Лендинги</td><td class="num">80 000</td><td class="cm">если делаем лендинг — его сумма в плане</td></tr><tr class="w"><td><span class="tp w">Работы</span></td><td class="le">Юрлицо E</td><td class="c1">Сервис колл-трекинга</td><td class="num">30 000</td><td class="cm">сервис, который используем в проекте</td></tr><tr class="r"><td><span class="tp r">Резерв</span></td><td class="le">Юрлицо B</td><td class="c1">Резерв на срочные работы и риски</td><td class="num">80 000</td><td class="cm">1–3% от плана: срочные задачи, дополнительные подрядчики, небольшие непредвиденные работы</td></tr></tbody></table>
+    <div class="totals">
+      <div class="t"><span>Рекламный бюджет</span><b>3 000 000</b></div>
+      <div class="t"><span>Услуги и работы</span><b>990 000</b></div>
+      <div class="t"><span>из них работы за рекламные каналы</span><b>470 000</b></div>
+      <div class="t"><span>из них дополнительные услуги</span><b>440 000</b></div>
+      <div class="t rsv"><span>из них резерв (2.0% от плана)</span><b>80 000</b></div>
+      <div class="t all"><span>ИТОГО</span><b>3 990 000</b></div>
+    </div>
+  </div>
+
+  <div class="period">
+    <div class="tb-cap">Горизонт планирования — квартал: как деньги движутся от месяца к месяцу <small>рекламные бюджеты, тыс. ₽, суммы условные</small></div>
+    <div class="pr">
+      <div class="pb">Остаток на начало</div><span>+</span>
+      <div class="pb">Пополнение</div><span>=</span>
+      <div class="pb">Бюджет с остатком</div><span>−</span>
+      <div class="pb">Фактический расход</div><span>=</span>
+      <div class="pb acc">Остаток периода</div>
+    </div>
+    <div class="qwrap">
+    <table class="qt">
+      <thead>
+        <tr><th rowspan="2">Канал</th><th colspan="4" class="mh">Январь</th><th colspan="4" class="mh">Февраль</th><th colspan="4" class="mh">Март</th><th colspan="3" class="mh q">Свод квартала</th></tr>
+        <tr><th>Остаток на начало</th><th>Пополнение</th><th>Расход</th><th>Остаток</th><th>Остаток на начало</th><th>Пополнение</th><th>Расход</th><th>Остаток</th><th>Остаток на начало</th><th>Пополнение</th><th>Расход</th><th>Остаток</th><th class="q">Пополнения</th><th class="q">Расход</th><th class="q">Остаток</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c1">Контекст</td><td>0</td><td>600</td><td>570</td><td class="car">30</td><td>30</td><td>600</td><td>615</td><td class="car">15</td><td>15</td><td>600</td><td>585</td><td class="car">30</td><td class="q">1 800</td><td class="q">1 770</td><td class="q">30</td></tr><tr><td class="c1">Классифайды</td><td>0</td><td>800</td><td>760</td><td class="car">40</td><td>40</td><td>800</td><td>835</td><td class="car">5</td><td>5</td><td>800</td><td>805</td><td class="car">0</td><td class="q">2 400</td><td class="q">2 400</td><td class="q">0</td></tr><tr><td class="c1">Посевы</td><td>0</td><td>300</td><td>285</td><td class="car">15</td><td>15</td><td>300</td><td>310</td><td class="car">5</td><td>5</td><td>300</td><td>305</td><td class="car">0</td><td class="q">900</td><td class="q">900</td><td class="q">0</td></tr><tr class="tt"><td class="c1">Итого</td><td>0</td><td>1 700</td><td>1 615</td><td class="car">85</td><td>85</td><td>1 700</td><td>1 760</td><td class="car">25</td><td>25</td><td>1 700</td><td>1 695</td><td class="car">30</td><td class="q">5 100</td><td class="q">5 070</td><td class="q">30</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fn"><b style="color:var(--card)">Как читать:</b> остаток января (выделен) становится стартовым остатком февраля, остаток февраля — стартовым остатком марта. В своде квартала видно, сколько запрошено, сколько фактически потрачено и сколько осталось. Планируем мы на квартал, а двигаем и сверяем деньги по месяцам.</p>
+  </div>
+  <div class="callout"><p><b>Прозрачность для клиента.</b> Клиент видит не только плановую цифру, но и то, сколько мы потратили и сколько перешло из января в февраль и из февраля в март. Это показывает, как мы осваиваем бюджет, который запрашиваем, и насколько точно планируем. Это та же прозрачность, что и в отчётности: мы отражаем движение средств и бюджетов, а не только итог. Как собирается и сверяется отчётность — в кейсе <a href="analytics.html" style="color:var(--blue-d)">«Построение отдела аналитики»</a>.</p></div>
+  <a class="doclink" href="https://docs.google.com/spreadsheets/d/1l6F2uklkVTSsyeJwdpwtlAA9mUabNpqvrFSG1GC6ZCw/edit?gid=993640433#gid=993640433" target="_blank" rel="noopener noreferrer"><span class="dl-t">Открыть пример маркетплана</span><span class="dl-s">Google Sheets · квартал на одном листе, условные цифры</span><span class="dl-a">↗</span></a>
+</div>
+
+<div class="section">
+  <div class="idx">05 / утверждение</div>
+  <h2>Согласование, защита и передача в финансы</h2>
+  <p class="lede">Планирование и в медиаплане, и в маркетплане — квартальное. Документ проходит внутреннее согласование: специалисты, помощник проджекта и я как проджект-директор. Затем уходит клиенту: он утверждает план или вносит правки, а мы защищаем документ на встречах.</p>
+  <p class="lede">После утверждения план уходит в финансовый отдел, к финансовому директору. На его основе финансисты готовят документы на подпись — со всеми цифрами и видами работ, — а дальше выставляются счета, идёт работа и подписываются акты. Поэтому ошибка в плане превращается в ошибку в документах, и цена её проверки на старте — самая низкая. Календарь согласований и сроки — в кейсе <a href="processes.html" style="color:#7FA8D0;text-decoration:underline;text-underline-offset:3px">«Бизнес-процессы»</a>.</p>
+</div>
+
+<div class="section">
+  <div class="idx">06 / что ещё важно</div>
+  <h2>Детали, которые делают из таблиц систему</h2>
+  <div class="grid6">
+    <div class="g6"><h5>Работы привязаны к бюджету</h5><p>Работы считаются по правилам от бюджета канала, с минимальным порогом. Рост бюджета автоматически пересчитывает смету.</p></div>
+    <div class="g6"><h5>Мотивация видна заранее</h5><p>Прогноз выплат по системе KPI заложен в смету отдельной строкой, а не появляется потом как сюрприз.</p></div>
+    <div class="g6"><h5>Плательщик задан в плане</h5><p>У каждой строки указано юридическое лицо, поэтому финансовый отдел сразу видит, кому и что выставлять.</p></div>
+    <div class="g6"><h5>Сценарии планирования</h5><p>Один период можно просчитать в двух вариантах; принятый помечается, а доплаты вносятся отдельным листом без правки основного плана.</p></div>
+    <div class="g6"><h5>Объяснение у каждой строки</h5><p>В комментариях — почему сумма такая: минимальный порог, прогноз, ограничение. Спор по цифре решается по тексту, а не по памяти.</p></div>
+    <div class="g6"><h5>Честность охватов</h5><p>Post-view и ассистированные сделки включены отдельно и с оговоркой, что они дробные и считаются по модели, а не по факту.</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="idx">07 / итог</div>
+  <h2>Планирование как система, а не набор таблиц</h2>
+  <div class="callout"><p><b>Итог:</b> от коммерческого предложения до счёта цифры идут одной цепочкой. Медиаплан задаёт логику воронки и объёмы, маркетплан превращает её в смету с работами и сервисами, клиент утверждает именно эту смету, а финансы работают с ней же. У команды нет «серых» работ без бюджета, а у клиента — неожиданных счетов.</p></div>
+</div>
+<div class="related"><h4>Другие кейсы</h4><div class="rl"><a href="performance.html">Перформанс-маркетинг<small>воронка и ROMI</small></a><a href="analytics.html">Построение отдела аналитики<small>дашборд как продукт</small></a><a href="processes.html">Бизнес-процессы<small>единый календарь</small></a><a href="team.html">Команда и KPI<small>прозрачная мотивация</small></a></div></div>
+
+<div class="footer">
+  <a href="processes.html">Связанный кейс: бизнес-процессы →</a>
+  <span class="tg">связаться: <a href="https://t.me/ro_kate">tg @ro_kate</a></span>
+</div>
+</div>
+<div style="text-align:center;padding:18px 16px 26px;font:11px/1.5 'IBM Plex Mono',ui-monospace,monospace;color:#8A8272;letter-spacing:.04em">© 2026 Екатерина Дорохина. Все права защищены. Копирование и использование материалов без разрешения автора запрещено.</div>
+</body>
+</html>
